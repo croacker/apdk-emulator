@@ -112,11 +112,6 @@
             <version>3.7.2</version>
         </dependency>
         <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>11.2.0</version>
-        </dependency>
-        <dependency>
             <groupId>commons-configuration</groupId>
             <artifactId>commons-configuration</artifactId>
             <version>1.10</version>
@@ -163,30 +158,6 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-install-plugin</artifactId>
-                <version>2.3.1</version>
-                <executions>
-                    <execution>
-                        <id>install-paho</id>
-                        <phase>clean</phase>
-                        <goals>
-                            <goal>install-file</goal>
-                        </goals>
-                        <configuration>
-                            <file>${project.basedir}/lib/${oracle.driver.lib}.jar</file>
-                            <file>${project.basedir}/lib/ojdbc6.jar</file>
-                            <groupId>com.oracle</groupId>
-                            <artifactId>ojdbc6</artifactId>
-                            <version>11.2.0</version>
-                            <generatePom>true</generatePom>
-                            <createChecksum>true</createChecksum>
-                            <packaging>jar</packaging>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.0.2</version>
                 <configuration>
@@ -203,7 +174,7 @@
                     <finalName>lbutil-ml</finalName>
                     <archive>
                         <manifest>
-                            <mainClass>com.homeworld.arithmetic.ArithmeticApp</mainClass>
+                            <mainClass>ru.peak.ml.apdk.ApdkEmulatorApp</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
@@ -224,7 +195,7 @@
                 <configuration>
                     <programs>
                         <program>
-                            <mainClass>ru.croacker.lbutil.LbUtilApp</mainClass>
+                            <mainClass>ru.peak.ml.apdk.ApdkEmulatorApp</mainClass>
                             <id>app</id>
                         </program>
                     </programs>
