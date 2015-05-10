@@ -1,7 +1,11 @@
 package ru.peak.ml.apdk.service.apdk;
 
 /**
- * Created by user on 08.05.2015.
+ *
  */
-public class Reconcilation {
+public class Reconcilation implements Operation{
+  @Override
+  public byte[] getData() {
+    return new byte[0];
+  }
 }
