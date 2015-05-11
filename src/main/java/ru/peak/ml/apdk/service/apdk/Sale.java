@@ -40,6 +40,8 @@ public class Sale extends CommonApdkMessage {
   }
 
   private byte[] getSumAsBytes() {
+//    byte[] result = new byte[]{0,0,0,0};
+
     return getSum().getBytes();
   }
 
