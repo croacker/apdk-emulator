@@ -308,7 +308,7 @@ public class MainFrm extends JFrame {
   }
 
   private void showNotImplementPopup() {
-    JOptionPane.showMessageDialog(this, "Операция не реализована!");
+    showError("Операция не реализована!");
   }
 
   private void showError(String error) {
