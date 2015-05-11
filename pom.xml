@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>ru.croacker.lbutil</groupId>
-    <artifactId>lbutil-ml</artifactId>
-    <version>0.2</version>
+    <groupId>ru.peak.ml</groupId>
+    <artifactId>apdk-emulator</artifactId>
+    <version>0.1</version>
     <packaging>jar</packaging>
 
     <properties>
@@ -151,6 +151,11 @@
             <groupId>de.sciss</groupId>
             <artifactId>weblaf</artifactId>
             <version>1.27</version>
+        </dependency>
+        <dependency>
+            <groupId>ru.peak.cms.project</groupId>
+            <artifactId>loyalty-terminal-exchange</artifactId>
+            <version>1.0</version>
         </dependency>
     </dependencies>
 
