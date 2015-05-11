@@ -2,6 +2,8 @@ package ru.peak.ml.apdk.service.apdk;
 
 import lombok.Getter;
 import org.apache.commons.lang.ArrayUtils;
+import ru.peak.ml.loyalty.message.Message;
+import ru.peak.ml.loyalty.message.ResponseMessage;
 
 /**
  *
@@ -43,6 +45,27 @@ public class Sale extends CommonApdkMessage {
 //    byte[] result = new byte[]{0,0,0,0};
 
     return getSum().getBytes();
+  }
+
+  public Message getNewRequest(){
+    ResponseMessage responseMessage = new ResponseMessage();
+    responseMessage.setProtocolVersion(new String(new byte[]{7}));
+    responseMessage.setTerminalNumber(new String(new byte[]{57, 57, 55, 55, 53, 53, 51, 51}));
+    responseMessage.setCashId(new String(new byte[]{50, 50, 52, 52}));
+    responseMessage.setCardIdentifier(new String(new byte[]{4, 69, -54, -126, -107, -13, -118, 42, -108, -4, 4, -76, -96, 110, -42, -104, 25, 106, -53, 112, -31, 51, 0, 92, 57, 60, -44}));
+    responseMessage.setCurrencyCode(new String(new byte[]{54, 52, 51}));
+    responseMessage.setOperationTimestamp(new String(new byte[]{50, 48, 49, 53, 48, 52, 50, 49, 49, 55, 49, 49, 50, 50}));
+    responseMessage.setShopId(new String(new byte[]{49, 49, 54, 48, 49, 52}));
+    responseMessage.setReferenceNumber(new String(new byte[]{49, 48, 48, 48, 48, 48, 48, 48, 48, 49}));
+    responseMessage.setPaymentMethod(new String(new byte[]{49}));
+    responseMessage.setAcquirerId(new String(new byte[]{49, 49, 54, 48, 48, 49}));
+    responseMessage.setBatchNumber(new String(new byte[]{16, 0, 1}));
+    responseMessage.setOperationNumber(new String(new byte[]{16, 0, 1}));
+    responseMessage.setSum(new String(new byte[]{16, 0, 1}));
+    responseMessage.setOperationType(new String(new byte[]{49}));
+    responseMessage.setProtocolIdentifier(new String(new byte[]{48, 48,48}));
+
+    return responseMessage;
   }
 
 }
