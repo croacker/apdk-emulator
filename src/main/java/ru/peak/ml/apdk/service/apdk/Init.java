@@ -1,5 +1,7 @@
 package ru.peak.ml.apdk.service.apdk;
 
+import ru.peak.ml.loyalty.message.Message;
+
 /**
  *
  */
@@ -14,5 +16,10 @@ public class Init extends CommonApdkMessage {
   @Override
   public byte[] getData() {
     return ORIGINAL_DATA;
+  }
+
+  @Override
+  public Message getNewApdkMessage() {
+    return null;
   }
 }

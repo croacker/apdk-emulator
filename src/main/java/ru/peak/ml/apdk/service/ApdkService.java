@@ -5,6 +5,7 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.stereotype.Service;
 import ru.peak.ml.apdk.service.apdk.ApdkMessage;
+import ru.peak.ml.loyalty.message.Message;
 import ru.peak.ml.loyalty.message.RequestMessage;
 
 import java.io.*;
@@ -18,11 +19,8 @@ import java.net.Socket;
 @Slf4j
 public class ApdkService {
 
-    int PORT = 7000;
-    String ADDRESS = "127.0.0.1";
-
     public String sendMessage(ApdkMessage message) throws IOException {
-      String result;
+        String result;
         try {
             Socket socket = getSocket(message);
 
@@ -34,7 +32,9 @@ public class ApdkService {
             DataInputStream in = new DataInputStream(sin);
             DataOutputStream out = new DataOutputStream(sout);
 
-            byte[] data = message.getData();
+            Message apdkMessage = message.getNewApdkMessage();
+//            byte[] data = message.getData();
+            byte[] data = apdkMessage.toArray();
 
             out.write(data); // отсылаем введенную строку текста серверу.
             out.flush(); // заставляем поток закончить передачу данных.
@@ -42,16 +42,16 @@ public class ApdkService {
             byte[] responseMessage = IOUtils.toByteArray(in);
             log.info("The server was very polite. It sent me this : " + ArrayUtils.toString(responseMessage));
 
-          RequestMessage request = new RequestMessage(data);
+            RequestMessage request = new RequestMessage(data);
 
-          result = request.toHumanizedString();
+            result = request.toHumanizedString();
 
-          log.info(result);
+            log.info(result);
         } catch (Exception x) {
             log.error(x.getMessage(), x);
-          throw x;
+            throw x;
         }
-      return result;
+        return result;
     }
 
   private Socket getSocket(ApdkMessage message) throws IOException {

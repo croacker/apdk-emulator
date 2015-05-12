@@ -1,5 +1,7 @@
 package ru.peak.ml.apdk.service.apdk;
 
+import ru.peak.ml.loyalty.message.Message;
+
 /**
  *
  */
@@ -10,5 +12,7 @@ public interface ApdkMessage {
   int getServerPort();
 
   byte[] getData();
+
+  Message getNewApdkMessage();
 
 }
