@@ -13,7 +13,7 @@ public class ClientAccount extends CommonApdkMessage {
 
   @Override
   public byte[] getData() {
-    return new byte[0];
+    return getNewApdkMessage().toArray();
   }
 
   @Override

@@ -32,9 +32,7 @@ public class ApdkService {
             DataInputStream in = new DataInputStream(sin);
             DataOutputStream out = new DataOutputStream(sout);
 
-            Message apdkMessage = message.getNewApdkMessage();
-//            byte[] data = message.getData();
-            byte[] data = apdkMessage.toArray();
+            byte[] data = message.getNewApdkMessage().toArray();
 
             out.write(data); // отсылаем введенную строку текста серверу.
             out.flush(); // заставляем поток закончить передачу данных.
