@@ -5,7 +5,6 @@ import com.alee.laf.rootpane.WebFrame;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import ru.peak.ml.apdk.service.ApdkService;
 import ru.peak.ml.apdk.service.apdk.ApdkMessage;
 import ru.peak.ml.apdk.service.apdk.Init;
@@ -20,10 +19,8 @@ import java.io.IOException;
 /**
  *
  */
-@Component
 @Slf4j
 public class MainFrm extends WebFrame{
-        //extends JFrame {
 
   public static final String DEFAULT_SERVER_ADDRESS = "127.0.0.1";
   public static final String DEFAULT_SERVER_PORT = "7000";

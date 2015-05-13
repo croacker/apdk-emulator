@@ -3,7 +3,7 @@ package ru.peak.ml.apdk;
 import com.alee.laf.WebLookAndFeel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import ru.peak.ml.apdk.ui.MainFrm;
+import ru.peak.ml.apdk.ui.MainFrmPaged;
 
 /**
  *
@@ -12,7 +12,7 @@ import ru.peak.ml.apdk.ui.MainFrm;
 public class ApdkEmulatorApp implements Runnable {
 
   @Autowired
-  MainFrm frmMain;
+  MainFrmPaged frmMain;
 
   public void run() {
     frmMain.setLocationRelativeTo(null);
