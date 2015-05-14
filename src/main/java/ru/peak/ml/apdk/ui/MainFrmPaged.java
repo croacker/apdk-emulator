@@ -195,9 +195,10 @@ public class MainFrmPaged extends JFrame {
         account.setCardHash(jpAccount.getCardHash());
 
         try {
-            apdkService.sendMessage(account);
+          jtaLog.append(apdkService.sendMessage(account));
         } catch (IOException e) {
             log.error(e.getMessage(), e);
+          jtaLog.append(e.toString());
         }
     }
 
@@ -207,9 +208,10 @@ public class MainFrmPaged extends JFrame {
         Cancel cancel = new Cancel(getServerAddress(), Integer.valueOf(getServerPort()));
 
         try {
-            apdkService.sendMessage(cancel);
+          jtaLog.append(apdkService.sendMessage(cancel));
         } catch (IOException e) {
             log.error(e.getMessage(), e);
+          jtaLog.append(e.toString());
         }
     }
 
@@ -219,9 +221,10 @@ public class MainFrmPaged extends JFrame {
         Init init = new Init(getServerAddress(), Integer.valueOf(getServerPort()));
 
         try {
-            apdkService.sendMessage(init);
+          jtaLog.append(apdkService.sendMessage(init));
         } catch (IOException e) {
             log.error(e.getMessage(), e);
+          jtaLog.append(e.toString());
         }
     }
 
@@ -234,6 +237,7 @@ public class MainFrmPaged extends JFrame {
             apdkService.sendMessage(reconcilation);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
+          jtaLog.append(e.toString());
         }
     }
 
