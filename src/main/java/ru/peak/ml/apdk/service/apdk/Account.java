@@ -4,13 +4,16 @@ import lombok.Getter;
 import lombok.Setter;
 import ru.peak.ml.apdk.service.formatter.AccountFormatter;
 import ru.peak.ml.apdk.service.formatter.MessageFormatter;
-import ru.peak.ml.loyalty.message.Message;
 import ru.peak.ml.loyalty.message.ResponseMessage;
+
+import javax.xml.bind.DatatypeConverter;
 
 /**
  *
  */
 public class Account extends CommonApdkMessage {
+
+    public static final String OPERATION_TYPE = new String(new byte[]{49, 51});
 
     @Getter @Setter
     private String cardHash;
@@ -27,10 +30,12 @@ public class Account extends CommonApdkMessage {
     }
 
     @Override
-    public Message getNewApdkMessage() {
-        ResponseMessage message = new ResponseMessage();
+    public ResponseMessage getNewApdkMessage() {
+        ResponseMessage message = super.getNewApdkMessage();
+        message.setCardIdentifier(DatatypeConverter.parseHexBinary(getCardHash()));
+        message.setBatchNumber("100001");
 
-        message.setErrorDescription("EMULATION");
+        message.setOperationType(OPERATION_TYPE);
         return message;
     }
 

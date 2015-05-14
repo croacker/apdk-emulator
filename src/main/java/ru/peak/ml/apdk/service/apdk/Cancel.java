@@ -1,5 +1,7 @@
 package ru.peak.ml.apdk.service.apdk;
 
+import lombok.Getter;
+import lombok.Setter;
 import ru.peak.ml.apdk.service.formatter.CancelFormatter;
 import ru.peak.ml.apdk.service.formatter.MessageFormatter;
 import ru.peak.ml.loyalty.message.Message;
@@ -9,6 +11,15 @@ import ru.peak.ml.loyalty.message.ResponseMessage;
  *
  */
 public class Cancel extends CommonApdkMessage {
+
+    public static final String OPERATION_TYPE = new String(new byte[]{52});
+
+    @Getter
+    @Setter
+    private String date;
+
+    @Getter @Setter
+    private String loyaltySum;
 
     public Cancel(String serverAddress, int serverPort) {
         super(serverAddress, serverPort);
@@ -22,10 +33,14 @@ public class Cancel extends CommonApdkMessage {
     }
 
     @Override
-    public Message getNewApdkMessage() {
-        ResponseMessage message = new ResponseMessage();
+    public ResponseMessage getNewApdkMessage() {
+        ResponseMessage message = super.getNewApdkMessage();
+        message.setOperationTimestamp(getDate());
+        message.setSumLoyalty(Long.valueOf(getLoyaltySum()));
+        message.setRewardSum(getLoyaltySum());
+        message.setBatchNumber("100001");
 
-        message.setErrorDescription("EMULATION");
+        message.setOperationType(OPERATION_TYPE);
         return message;
     }
 

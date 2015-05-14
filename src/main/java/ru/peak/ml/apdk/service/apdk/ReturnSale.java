@@ -4,13 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 import ru.peak.ml.apdk.service.formatter.MessageFormatter;
 import ru.peak.ml.apdk.service.formatter.ReturnFormatter;
-import ru.peak.ml.loyalty.message.Message;
 import ru.peak.ml.loyalty.message.ResponseMessage;
 
 /**
  *
  */
 public class ReturnSale extends CommonApdkMessage {
+
+    public static final String OPERATION_TYPE = new String(new byte[]{50, 57});
 
     MessageFormatter formatter = new ReturnFormatter();
 
@@ -39,10 +40,17 @@ public class ReturnSale extends CommonApdkMessage {
     }
 
     @Override
-    public Message getNewApdkMessage() {
-        ResponseMessage message = new ResponseMessage();
+    public ResponseMessage getNewApdkMessage() {
+        ResponseMessage message = super.getNewApdkMessage();
+        message.setOperationTimestamp(getDate());
+        message.setReferenceNumber(getReferenceNumber());
+        message.setPaymentMethod(getPaymentMethod());
+        message.setBatchNumber("100001");
+        message.setSum(getSum());
+        message.setSumLoyalty(Long.valueOf(getLoyaltySum()));
+        message.setRewardSum(getLoyaltySum());
 
-        message.setErrorDescription("EMULATION");
+        message.setOperationType(OPERATION_TYPE);
         return message;
     }
 

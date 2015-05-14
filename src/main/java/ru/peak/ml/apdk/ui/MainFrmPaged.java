@@ -7,9 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.peak.ml.apdk.service.ApdkService;
-import ru.peak.ml.apdk.service.apdk.Account;
-import ru.peak.ml.apdk.service.apdk.ReturnSale;
-import ru.peak.ml.apdk.service.apdk.Sale;
+import ru.peak.ml.apdk.service.apdk.*;
 import ru.peak.ml.apdk.ui.dialog.SettingsDialog;
 import ru.peak.ml.apdk.ui.menu.MainMenu;
 import ru.peak.ml.apdk.ui.panel.*;
@@ -191,7 +189,7 @@ public class MainFrmPaged extends JFrame {
     }
 
     private void account() {
-        jtaLog.append("Запрос: ЗАПРОС БАЛАНСА");
+        jtaLog.append("Запрос: ЗАПРОС БАЛАНСА\r\n");
 
         Account account = new Account(getServerAddress(), Integer.valueOf(getServerPort()));
         account.setCardHash(jpAccount.getCardHash());
@@ -204,22 +202,43 @@ public class MainFrmPaged extends JFrame {
     }
 
     private void cancel() {
-        jtaLog.append("Запрос: ОТМЕНА");
+        jtaLog.append("Запрос: ОТМЕНА\r\n");
 
+        Cancel cancel = new Cancel(getServerAddress(), Integer.valueOf(getServerPort()));
+
+        try {
+            apdkService.sendMessage(cancel);
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+        }
     }
 
     private void init() {
-        jtaLog.append("Запрос: ИНИЦИАЛИЗАЦИЯ");
+        jtaLog.append("Запрос: ИНИЦИАЛИЗАЦИЯ\r\n");
 
+        Init init = new Init(getServerAddress(), Integer.valueOf(getServerPort()));
+
+        try {
+            apdkService.sendMessage(init);
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+        }
     }
 
     private void reconcilation() {
-        jtaLog.append("Запрос: СВЕРКА ИТОГОВ");
+        jtaLog.append("Запрос: СВЕРКА ИТОГОВ\r\n");
 
+        Reconcilation reconcilation = new Reconcilation(getServerAddress(), Integer.valueOf(getServerPort()));
+
+        try {
+            apdkService.sendMessage(reconcilation);
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+        }
     }
 
     private void returnSale() {
-        jtaLog.append("Запрос: ВОЗВРАТ");
+        jtaLog.append("Запрос: ВОЗВРАТ\r\n");
         ReturnSale returnSale = new ReturnSale(getServerAddress(), Integer.valueOf(getServerPort()));
         returnSale.setDate(jpReturn.getDate());
         returnSale.setPaymentMethod(jpSale.getPaymentMethod());
@@ -236,7 +255,7 @@ public class MainFrmPaged extends JFrame {
     }
 
     private void sale() {
-        jtaLog.append("Запрос: ПРОДАЖА");
+        jtaLog.append("Запрос: ПРОДАЖА\r\n");
 
         Sale sale = new Sale(getServerAddress(), Integer.valueOf(getServerPort()));
         sale.setCardHash(jpSale.getCardHash());

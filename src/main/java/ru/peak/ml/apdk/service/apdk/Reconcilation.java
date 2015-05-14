@@ -2,13 +2,14 @@ package ru.peak.ml.apdk.service.apdk;
 
 import ru.peak.ml.apdk.service.formatter.MessageFormatter;
 import ru.peak.ml.apdk.service.formatter.ReconcilationFormatter;
-import ru.peak.ml.loyalty.message.Message;
 import ru.peak.ml.loyalty.message.ResponseMessage;
 
 /**
  *
  */
 public class Reconcilation extends CommonApdkMessage {
+
+  public static final String OPERATION_TYPE = new String(new byte[]{53, 57});
 
   MessageFormatter formatter = new ReconcilationFormatter();
 
@@ -22,10 +23,11 @@ public class Reconcilation extends CommonApdkMessage {
   }
 
   @Override
-  public Message getNewApdkMessage() {
-    ResponseMessage message = new ResponseMessage();
+  public ResponseMessage getNewApdkMessage() {
+    ResponseMessage message = super.getNewApdkMessage();
+    message.setBatchNumber("100001");
 
-    message.setErrorDescription("EMULATION");
+    message.setOperationType(OPERATION_TYPE);
     return message;
   }
 

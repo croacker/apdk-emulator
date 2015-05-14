@@ -2,6 +2,7 @@ package ru.peak.ml.apdk.service.apdk;
 
 import ru.peak.ml.apdk.service.formatter.MessageFormatter;
 import ru.peak.ml.loyalty.message.Message;
+import ru.peak.ml.loyalty.message.ResponseMessage;
 
 /**
  *
@@ -14,7 +15,7 @@ public interface ApdkMessage {
 
   byte[] getData();
 
-  Message getNewApdkMessage();
+  ResponseMessage getNewApdkMessage();
 
   MessageFormatter getFormatter();
 }
