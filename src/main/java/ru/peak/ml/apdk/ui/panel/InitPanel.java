@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.swing.*;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -26,6 +27,16 @@ public class InitPanel extends JPanel {
         jpInitLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
             .addGap(0, 248, Short.MAX_VALUE)
     );
+
+      setDefaultValues();
   }
+
+    private void setDefaultValues(){
+
+    }
+
+    public void addRunOperationClickListener(ActionListener actionListener) {
+
+    }
 
 }

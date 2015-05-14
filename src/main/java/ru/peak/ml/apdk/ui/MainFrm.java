@@ -279,7 +279,8 @@ public class MainFrm extends WebFrame{
       return;
     }
 
-    ApdkMessage message = new Sale(serverAddress, serverPort, sum);
+    Sale message = new Sale(serverAddress, serverPort);
+      message.setSum(sum);
 
 
     try {

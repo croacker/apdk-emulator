@@ -5,7 +5,6 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.springframework.stereotype.Service;
 import ru.peak.ml.apdk.service.apdk.ApdkMessage;
-import ru.peak.ml.loyalty.message.Message;
 import ru.peak.ml.loyalty.message.RequestMessage;
 
 import java.io.*;
@@ -19,35 +18,33 @@ import java.net.Socket;
 @Slf4j
 public class ApdkService {
 
-    public String sendMessage(ApdkMessage message) throws IOException {
-        String result;
+    public String sendMessage(ApdkMessage apdkMessage) throws IOException {
+        String result = "";
         try {
-            Socket socket = getSocket(message);
+            Socket socket = getSocket(apdkMessage);
 
-            // Берем входной и выходной потоки сокета, теперь можем получать и отсылать данные клиентом.
             InputStream sin = socket.getInputStream();
             OutputStream sout = socket.getOutputStream();
 
-            // Конвертируем потоки в другой тип, чтоб легче обрабатывать текстовые сообщения.
             DataInputStream in = new DataInputStream(sin);
             DataOutputStream out = new DataOutputStream(sout);
 
-            byte[] data = message.getNewApdkMessage().toArray();
+            byte[] data = apdkMessage.getNewApdkMessage().toArray();
 
-            out.write(data); // отсылаем введенную строку текста серверу.
-            out.flush(); // заставляем поток закончить передачу данных.
+            out.write(data);
+            out.flush();
 
-            byte[] responseMessage = IOUtils.toByteArray(in);
-            log.info("The server was very polite. It sent me this : " + ArrayUtils.toString(responseMessage));
+            byte[] responseMessageData = IOUtils.toByteArray(in);
+            log.info("The server sent me this : " + ArrayUtils.toString(responseMessageData));
 
-            RequestMessage request = new RequestMessage(data);
+            RequestMessage responseMessage = new RequestMessage(responseMessageData);
 
-            result = request.toHumanizedString();
+            result = apdkMessage.getFormatter().toMessageString(responseMessage);
 
             log.info(result);
         } catch (Exception x) {
             log.error(x.getMessage(), x);
-            throw x;
+            result = x.toString();
         }
         return result;
     }

@@ -2,9 +2,16 @@ package ru.peak.ml.apdk.ui.panel;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import ru.peak.ml.loyalty.core.service.CardService;
+import ru.peak.ml.loyalty.util.StringUtil;
 
 import javax.annotation.PostConstruct;
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -12,6 +19,12 @@ import javax.swing.*;
 @Component
 @Slf4j
 public class AccountPanel extends JPanel {
+
+    private static ThreadLocal<DateFormat> expireDateInputFormat = new ThreadLocal<DateFormat>() {
+        protected DateFormat initialValue() {
+            return new SimpleDateFormat("MM/yy");
+        }
+    };
 
   private JLabel jLabel14;
   private JLabel jLabel15;
@@ -23,6 +36,20 @@ public class AccountPanel extends JPanel {
 
   private JButton jbHashAccount;
   private JButton jbAccount;
+
+    private CardService cardService;
+
+    private CardService getCardService(){
+        if (cardService == null){
+            cardService = new CardService();
+        }
+        return cardService;
+    }
+
+    public String getCardHash(){
+        calcCardHash();
+        return jtfHashAccount.getText();
+    }
 
   @SuppressWarnings("unchecked")
   @PostConstruct
@@ -37,6 +64,7 @@ public class AccountPanel extends JPanel {
     jtfHashAccount.setEditable(false);
 
     jbHashAccount = new JButton("HASH");
+      jbHashAccount.addActionListener(getCalcHashActionListener());
 
     jbAccount = new JButton("Состояние счета");
 
@@ -81,6 +109,39 @@ public class AccountPanel extends JPanel {
                 .addComponent(jbAccount)
                 .addContainerGap())
     );
+
+      setDefaultValues();
   }
+
+    private void setDefaultValues(){
+        jtfCardnumberAccount.setText("1234 5678 9012 3452");
+        jtfExpirationAccount.setText("04/17");
+    }
+
+    private ActionListener getCalcHashActionListener(){
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                calcCardHash();
+            }
+        };
+    }
+
+    public void addRunOperationClickListener(ActionListener actionListener) {
+        jbAccount.addActionListener(actionListener);
+    }
+
+
+    /**
+     * Расчитать хеш карты
+     */
+    private void calcCardHash() {
+        jtfHashAccount.setText(StringUtil.EMPTY);
+        String cardNumber = jtfCardnumberAccount.getText();
+        String expireMonth = expireDateInputFormat.get().format(new Date());
+
+        String cardHash = getCardService().calcHash(cardNumber, expireMonth);
+        jtfHashAccount.setText(cardHash);
+    }
 
 }

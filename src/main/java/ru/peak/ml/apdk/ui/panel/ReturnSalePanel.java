@@ -4,16 +4,27 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.peak.ml.apdk.ui.list.PaymentMethodCombobox;
+import ru.peak.ml.loyalty.core.data.mlenum.PaymentMethod;
 
 import javax.annotation.PostConstruct;
 import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
  */
 @Component
 @Slf4j
-public class ReturnPanel extends JPanel{
+public class ReturnSalePanel extends JPanel{
+
+    protected static ThreadLocal<DateFormat> dateFormat = new ThreadLocal<DateFormat>() {
+        protected DateFormat initialValue() {
+            return new SimpleDateFormat("yyyyMMddHHmmFF");
+        }
+    };
 
   private JLabel jLabel9;
   private JLabel jLabel10;
@@ -29,7 +40,27 @@ public class ReturnPanel extends JPanel{
   @Autowired
   private PaymentMethodCombobox jcbPaymentMethodReturn;
 
-  private JButton jbReturn;
+    public String getDate(){
+        return jtfDateReturn.getText();
+    }
+
+    public String getReferenceNumber(){
+        return jtfReferenceNumberReturn.getText();
+    }
+
+    public String getSum(){
+        return jtfSumReturn.getText();
+    }
+
+    public String getLoyaltySum(){
+        return jtfLoyaltySumReturn.getText();
+    }
+
+    public String getPaymentMethod(){
+        return ((PaymentMethod)jcbPaymentMethodReturn.getSelectedItem()).getCode();
+    }
+
+    private JButton jbReturn;
 
     @SuppressWarnings("unchecked")
     @PostConstruct
@@ -104,6 +135,21 @@ public class ReturnPanel extends JPanel{
                   .addComponent(jbReturn)
                   .addContainerGap())
       );
+
+        setDefaultValues();
+    }
+
+    private void setDefaultValues(){
+        jtfDateReturn.setText(dateFormat.get().format(new Date()));
+        jtfSumReturn.setText("1200");
+        jtfLoyaltySumReturn.setText("120");
+        jtfReferenceNumberReturn.setText("1000000001");
+
+        jcbPaymentMethodReturn.setSelectedIndex(1);
+    }
+
+    public void addRunOperationClickListener(ActionListener actionListener) {
+        jbReturn.addActionListener(actionListener);
     }
 
 }

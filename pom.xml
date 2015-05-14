@@ -76,6 +76,11 @@
             <artifactId>loyalty-terminal-exchange</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+            <groupId>ru.peak.cms.project</groupId>
+            <artifactId>loyalty-common</artifactId>
+            <version>1.0</version>
+        </dependency>
     </dependencies>
 
     <build>
