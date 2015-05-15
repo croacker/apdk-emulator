@@ -33,7 +33,6 @@ public class Account extends CommonApdkMessage {
     public ResponseMessage getNewApdkMessage() {
         ResponseMessage message = super.getNewApdkMessage();
         message.setCardIdentifier(DatatypeConverter.parseHexBinary(getCardHash()));
-        message.setBatchNumber("100001");
 
         message.setOperationType(OPERATION_TYPE);
         return message;

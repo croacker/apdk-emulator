@@ -69,6 +69,7 @@ public class MainFrmPaged extends JFrame {
 
         jtpMain.addTab("Продажа", jpSale);
         jtpMain.addTab("Возврат", jpReturn);
+        jtpMain.addTab("Отмена", jpCancel);
         jtpMain.addTab("Состояние счета", jpAccount);
         jtpMain.addTab("Инициализация", jpInit);
         jtpMain.addTab("Сверка итогов", jpReconcilation);
@@ -266,7 +267,7 @@ public class MainFrmPaged extends JFrame {
         sale.setDate(jpSale.getDate());
         sale.setPaymentMethod(jpSale.getPaymentMethod());
         sale.setReferenceNumber(jpSale.getReferenceNumber());
-        sale.setBatchNumber(jpSale.getBatchNumber());
+        sale.setOperationNumber(jpSale.getOperationNumber());
         sale.setSum(jpSale.getSum());
         sale.setLoyaltySum(jpSale.getLoyaltySum());
 

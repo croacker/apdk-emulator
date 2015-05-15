@@ -25,7 +25,6 @@ public class Reconcilation extends CommonApdkMessage {
   @Override
   public ResponseMessage getNewApdkMessage() {
     ResponseMessage message = super.getNewApdkMessage();
-    message.setBatchNumber("100001");
 
     message.setOperationType(OPERATION_TYPE);
     return message;

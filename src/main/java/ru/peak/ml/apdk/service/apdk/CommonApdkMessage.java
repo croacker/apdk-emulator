@@ -35,6 +35,7 @@ public abstract class CommonApdkMessage implements ApdkMessage {
     message.setOperationNumber(new byte[]{16, 0, 1});
     message.setProtocolIdentifier(new String(new byte[]{48, 48, 48}));
     message.setAcquirerId(new String(new byte[]{49, 49, 54, 48, 48, 49}));
+    message.setBatchNumber("100001");
     message.setErrorDescription("EMULATION");
     return message;
   }

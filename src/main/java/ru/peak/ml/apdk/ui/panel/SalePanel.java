@@ -51,7 +51,7 @@ public class SalePanel extends JPanel {
     private JTextField jtfReferenceNumberSale;
     private JTextField jtfSumSale;
     private JTextField jtfLoyaltySumSale;
-    private JTextField jtfBatchNumberSale;
+    private JTextField jtfOperationNumberSale;
 
     @Autowired
     private PaymentMethodCombobox jcbPaymentMethodSale;
@@ -82,8 +82,8 @@ public class SalePanel extends JPanel {
         return jtfReferenceNumberSale.getText();
     }
 
-    public String getBatchNumber(){
-        return jtfBatchNumberSale.getText();
+    public String getOperationNumber(){
+        return jtfOperationNumberSale.getText();
     }
 
     public String getSum(){
@@ -105,7 +105,7 @@ public class SalePanel extends JPanel {
         jLabel2 = new JLabel("Срок действия:");
         jLabel3 = new JLabel("Дата:");
         jLabel4 = new JLabel("Номер ссылки:");
-        jLabel5 = new JLabel("Номер батча:");
+        jLabel5 = new JLabel("Номер операции:");
         jLabel6 = new JLabel("Способ платежа:");
         jLabel7 = new JLabel("Сумма:");
         jLabel8 = new JLabel("Вознаграждение:");
@@ -121,7 +121,7 @@ public class SalePanel extends JPanel {
         jtfReferenceNumberSale = new JTextField();
         jtfSumSale = new JTextField();
         jtfLoyaltySumSale = new JTextField();
-        jtfBatchNumberSale = new JTextField();
+        jtfOperationNumberSale = new JTextField();
 
         jbHashSale = new JButton("HASH");
         jbHashSale.addActionListener(getCalcHashActionListener());
@@ -155,7 +155,7 @@ public class SalePanel extends JPanel {
                                                                         .addComponent(jLabel5))
                                                                 .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                                                                 .addGroup(jpSaleLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                                                                        .addComponent(jtfBatchNumberSale)
+                                                                        .addComponent(jtfOperationNumberSale)
                                                                         .addComponent(jcbPaymentMethodSale, 0, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                                         .addGroup(jpSaleLayout.createSequentialGroup()
                                                 .addGroup(jpSaleLayout.createParallelGroup(GroupLayout.Alignment.TRAILING)
@@ -204,7 +204,7 @@ public class SalePanel extends JPanel {
                                         .addComponent(jLabel4)
                                         .addComponent(jtfReferenceNumberSale, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel5)
-                                        .addComponent(jtfBatchNumberSale, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jtfOperationNumberSale, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jpSaleLayout.createParallelGroup(GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel7)
@@ -224,7 +224,7 @@ public class SalePanel extends JPanel {
         jtfExpirationSale.setText("04/17");
         jtfDateSale.setText(dateFormat.get().format(new Date()));
         jtfReferenceNumberSale.setText("1000000001");
-        jtfBatchNumberSale.setText("100001");
+        jtfOperationNumberSale.setText("100001");
         jtfSumSale.setText("1200");
         jtfLoyaltySumSale.setText("120");
 

@@ -2,10 +2,8 @@ package ru.peak.ml.apdk.service.apdk;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.apache.commons.lang.ArrayUtils;
 import ru.peak.ml.apdk.service.formatter.MessageFormatter;
 import ru.peak.ml.apdk.service.formatter.SaleFormatter;
-import ru.peak.ml.loyalty.message.Message;
 import ru.peak.ml.loyalty.message.ResponseMessage;
 
 import javax.xml.bind.DatatypeConverter;
@@ -39,7 +37,7 @@ public class Sale extends CommonApdkMessage {
 
     @Getter
     @Setter
-    private String batchNumber;
+    private String operationNumber;
 
     @Getter
     @Setter
@@ -63,7 +61,7 @@ public class Sale extends CommonApdkMessage {
         message.setOperationTimestamp(getDate());
         message.setReferenceNumber(getReferenceNumber());
         message.setPaymentMethod(getPaymentMethod());
-        message.setBatchNumber(getBatchNumber());
+        message.setOperationNumber(getOperationNumber());
         message.setSum(getSum());
         message.setRewardSum(getLoyaltySum());
         message.setOperationType(OPERATION_TYPE);

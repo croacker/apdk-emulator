@@ -45,7 +45,7 @@ public class ReturnSale extends CommonApdkMessage {
         message.setOperationTimestamp(getDate());
         message.setReferenceNumber(getReferenceNumber());
         message.setPaymentMethod(getPaymentMethod());
-        message.setBatchNumber("100001");
+
         message.setSum(getSum());
         message.setSumLoyalty(Long.valueOf(getLoyaltySum()));
         message.setRewardSum(getLoyaltySum());
