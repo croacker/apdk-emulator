@@ -1,5 +1,6 @@
 package ru.peak.ml.apdk.ui.panel;
 
+import com.alee.laf.text.WebFormattedTextField;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import ru.peak.ml.loyalty.core.service.CardService;
@@ -30,7 +31,7 @@ public class AccountPanel extends JPanel {
   private JLabel jLabel15;
 
   private JTextField jtfCardnumberAccount;
-  private JTextField jtfExpirationAccount;
+  private WebFormattedTextField jtfExpirationAccount;
 
   private JTextField jtfHashAccount;
 
@@ -58,7 +59,7 @@ public class AccountPanel extends JPanel {
     jLabel15 = new JLabel("Срок действия:");
 
     jtfCardnumberAccount = new JTextField();
-    jtfExpirationAccount = new JTextField();
+    jtfExpirationAccount = new WebFormattedTextField();
 
     jtfHashAccount = new JTextField();
     jtfHashAccount.setEditable(false);
@@ -138,7 +139,7 @@ public class AccountPanel extends JPanel {
     private void calcCardHash() {
         jtfHashAccount.setText(StringUtil.EMPTY);
         String cardNumber = jtfCardnumberAccount.getText();
-        String expireMonth = expireDateInputFormat.get().format(new Date());
+        String expireMonth = jtfExpirationAccount.getText();
 
         String cardHash = getCardService().calcHash(cardNumber, expireMonth);
         jtfHashAccount.setText(cardHash);

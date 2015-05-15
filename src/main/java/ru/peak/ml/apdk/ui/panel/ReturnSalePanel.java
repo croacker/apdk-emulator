@@ -3,6 +3,7 @@ package ru.peak.ml.apdk.ui.panel;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.peak.ml.apdk.ui.edit.DateWebSpinner;
 import ru.peak.ml.apdk.ui.list.PaymentMethodCombobox;
 import ru.peak.ml.loyalty.core.data.mlenum.PaymentMethod;
 
@@ -32,7 +33,8 @@ public class ReturnSalePanel extends JPanel{
   private JLabel jLabel12;
   private JLabel jLabel13;
 
-  private JTextField jtfDateReturn;
+    @Autowired
+    private DateWebSpinner jtfDateReturn;
   private JTextField jtfSumReturn;
   private JTextField jtfLoyaltySumReturn;
   private JTextField jtfReferenceNumberReturn;
@@ -41,7 +43,7 @@ public class ReturnSalePanel extends JPanel{
   private PaymentMethodCombobox jcbPaymentMethodReturn;
 
     public String getDate(){
-        return jtfDateReturn.getText();
+        return dateFormat.get().format(jtfDateReturn.getValue());
     }
 
     public String getReferenceNumber(){
@@ -72,7 +74,6 @@ public class ReturnSalePanel extends JPanel{
       jLabel12 = new JLabel("Вознаграждение:");
       jLabel13 = new JLabel("Способ платежа:");
 
-      jtfDateReturn = new JTextField();
       jtfSumReturn = new JTextField();
       jtfLoyaltySumReturn = new JTextField();
       jtfReferenceNumberReturn = new JTextField();
@@ -140,7 +141,7 @@ public class ReturnSalePanel extends JPanel{
     }
 
     private void setDefaultValues(){
-        jtfDateReturn.setText(dateFormat.get().format(new Date()));
+        jtfDateReturn.setValue(new Date());
         jtfSumReturn.setText("1200");
         jtfLoyaltySumReturn.setText("120");
         jtfReferenceNumberReturn.setText("1000000001");

@@ -1,8 +1,11 @@
 package ru.peak.ml.apdk.ui.panel;
 
+import com.alee.laf.spinner.WebSpinner;
+import com.alee.laf.text.WebFormattedTextField;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.peak.ml.apdk.ui.edit.DateWebSpinner;
 import ru.peak.ml.apdk.ui.list.PaymentMethodCombobox;
 import ru.peak.ml.loyalty.core.data.mlenum.PaymentMethod;
 import ru.peak.ml.loyalty.core.service.CardService;
@@ -14,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -45,9 +49,11 @@ public class SalePanel extends JPanel {
     private JLabel jLabel8;
 
     private JTextField jtfCardnumberSale;
-    private JTextField jtfExpirationSale;
+    private WebFormattedTextField jtfExpirationSale;
     private JTextField jtfHashSale;
-    private JTextField jtfDateSale;
+
+    @Autowired
+    private DateWebSpinner jtfDateSale;
     private JTextField jtfReferenceNumberSale;
     private JTextField jtfSumSale;
     private JTextField jtfLoyaltySumSale;
@@ -75,7 +81,7 @@ public class SalePanel extends JPanel {
     }
 
     public String getDate(){
-        return jtfDateSale.getText();
+        return dateFormat.get().format(jtfDateSale.getValue());
     }
 
     public String getReferenceNumber(){
@@ -114,10 +120,9 @@ public class SalePanel extends JPanel {
         jtfHashSale.setEditable(false);
 
         jtfCardnumberSale = new JTextField();
-        jtfExpirationSale = new JTextField();
+        jtfExpirationSale = new WebFormattedTextField();
         jtfHashSale = new JTextField();
         jtfHashSale.setEditable(false);
-        jtfDateSale = new JTextField();
         jtfReferenceNumberSale = new JTextField();
         jtfSumSale = new JTextField();
         jtfLoyaltySumSale = new JTextField();
@@ -222,7 +227,7 @@ public class SalePanel extends JPanel {
     private void setDefaultValues(){
         jtfCardnumberSale.setText("1234 5678 9012 3452");
         jtfExpirationSale.setText("04/17");
-        jtfDateSale.setText(dateFormat.get().format(new Date()));
+        jtfDateSale.setValue(new Date());
         jtfReferenceNumberSale.setText("1000000001");
         jtfOperationNumberSale.setText("100001");
         jtfSumSale.setText("1200");
@@ -250,7 +255,7 @@ public class SalePanel extends JPanel {
     private void calcCardHash() {
         jtfHashSale.setText(StringUtil.EMPTY);
         String cardNumber = jtfCardnumberSale.getText();
-        String expireMonth = expireDateInputFormat.get().format(new Date());
+        String expireMonth = jtfExpirationSale.getText();
 
         String cardHash = getCardService().calcHash(cardNumber, expireMonth);
         jtfHashSale.setText(cardHash);

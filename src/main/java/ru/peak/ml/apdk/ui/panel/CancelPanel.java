@@ -1,7 +1,9 @@
 package ru.peak.ml.apdk.ui.panel;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import ru.peak.ml.apdk.ui.edit.DateWebSpinner;
 
 import javax.annotation.PostConstruct;
 import javax.swing.*;
@@ -27,11 +29,16 @@ public class CancelPanel extends JPanel {
     private JLabel jLabel2;
     private JLabel jLabel3;
 
-    private JTextField jtfDateCancel;
+    @Autowired
+    private DateWebSpinner jtfDateCancel;
     private JTextField jtfOperationNumberCancel;
     private JTextField jtfLoyaltySumCancel;
 
     private JButton jbCancel;
+
+    public String getDate(){
+        return dateFormat.get().format(jtfDateCancel.getValue());
+    }
 
     @SuppressWarnings("unchecked")
     @PostConstruct
@@ -40,7 +47,6 @@ public class CancelPanel extends JPanel {
         jLabel2 = new JLabel("Номер операции:");
         jLabel3 = new JLabel("Вознаграждение:");
 
-        jtfDateCancel = new JTextField();
         jtfOperationNumberCancel = new JTextField();
         jtfLoyaltySumCancel = new JTextField();
 
@@ -92,7 +98,7 @@ public class CancelPanel extends JPanel {
     }
 
     private void setDefaultValues(){
-        jtfDateCancel.setText(dateFormat.get().format(new Date()));
+        jtfDateCancel.setValue(new Date());
         jtfOperationNumberCancel.setText("100001");
         jtfLoyaltySumCancel.setText("120");
     }
