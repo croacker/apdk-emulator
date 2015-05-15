@@ -57,7 +57,7 @@ public class ReturnSalePanel extends JPanel{
     }
 
     public String getPaymentMethod(){
-        return ((PaymentMethod)jcbPaymentMethodReturn.getSelectedItem()).getCode();
+        return ((PaymentMethod)jcbPaymentMethodReturn.getSelectedItem()).getIdCode();
     }
 
     private JButton jbReturn;

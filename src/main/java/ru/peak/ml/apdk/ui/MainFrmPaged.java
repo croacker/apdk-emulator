@@ -246,10 +246,10 @@ public class MainFrmPaged extends JFrame {
         jtaLog.append("Запрос: ВОЗВРАТ\r\n");
         ReturnSale returnSale = new ReturnSale(getServerAddress(), Integer.valueOf(getServerPort()));
         returnSale.setDate(jpReturn.getDate());
-        returnSale.setPaymentMethod(jpSale.getPaymentMethod());
-        returnSale.setReferenceNumber(jpSale.getReferenceNumber());
-        returnSale.setSum(jpSale.getSum());
-        returnSale.setLoyaltySum(jpSale.getLoyaltySum());
+        returnSale.setPaymentMethod(jpReturn.getPaymentMethod());
+        returnSale.setReferenceNumber(jpReturn.getReferenceNumber());
+        returnSale.setSum(jpReturn.getSum());
+        returnSale.setLoyaltySum(jpReturn.getLoyaltySum());
 
         try {
             jtaLog.append(apdkService.sendMessage(returnSale));
