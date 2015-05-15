@@ -22,7 +22,7 @@ public class Init extends CommonApdkMessage {
 
     @Override
     public byte[] getData() {
-        return ORIGINAL_DATA;
+        return getNewApdkMessage().toArray();
     }
 
     @Override

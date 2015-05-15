@@ -29,7 +29,7 @@ public class ApdkService {
             DataInputStream in = new DataInputStream(sin);
             DataOutputStream out = new DataOutputStream(sout);
 
-            byte[] data = apdkMessage.getNewApdkMessage().toArray();
+            byte[] data = apdkMessage.getData();
 
             out.write(data);
             out.flush();
