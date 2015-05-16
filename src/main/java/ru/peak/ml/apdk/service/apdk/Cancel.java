@@ -39,6 +39,7 @@ public class Cancel extends CommonApdkMessage {
     public ResponseMessage getNewApdkMessage() {
         ResponseMessage message = super.getNewApdkMessage();
         message.setOperationTimestamp(getDate());
+      message.setOperationNumber(getOperationNumber());
         message.setSumLoyalty(Long.valueOf(getLoyaltySum()));
         message.setRewardSum(getLoyaltySum());
 

@@ -54,6 +54,8 @@ public class MainFrmPaged extends JFrame {
     private InitPanel jpInit;
     @Autowired
     private ReconcilationPanel jpReconcilation;
+  @Autowired
+    private RawDataPanel jpRawData;
 
     private JTextArea jtaLog;
 
@@ -73,6 +75,7 @@ public class MainFrmPaged extends JFrame {
         jtpMain.addTab("Состояние счета", jpAccount);
         jtpMain.addTab("Инициализация", jpInit);
         jtpMain.addTab("Сверка итогов", jpReconcilation);
+        jtpMain.addTab("Данные", jpRawData);
 
         jtaLog.setColumns(20);
         jtaLog.setRows(5);
@@ -114,6 +117,7 @@ public class MainFrmPaged extends JFrame {
         jpReconcilation.addRunOperationClickListener(getReconcilationActionListener());
         jpReturn.addRunOperationClickListener(getReturnSaleActionListener());
         jpSale.addRunOperationClickListener(getSaleActionListener());
+      jpRawData.addRunOperationClickListener(getRawDataListener());
 
         jmbMain.addSettingsActionListener(getShowSettingsActionListener());
     }
@@ -180,6 +184,15 @@ public class MainFrmPaged extends JFrame {
         };
     }
 
+    private ActionListener getRawDataListener() {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sendRawData();
+            }
+        };
+    }
+
     private ActionListener getShowSettingsActionListener() {
         return new ActionListener() {
             @Override
@@ -190,6 +203,7 @@ public class MainFrmPaged extends JFrame {
     }
 
     private void account() {
+      jtaLog.append("...\r\n");
         jtaLog.append("Запрос: ЗАПРОС БАЛАНСА\r\n");
 
         Account account = new Account(getServerAddress(), Integer.valueOf(getServerPort()));
@@ -204,6 +218,7 @@ public class MainFrmPaged extends JFrame {
     }
 
     private void cancel() {
+      jtaLog.append("...\r\n");
         jtaLog.append("Запрос: ОТМЕНА\r\n");
 
         Cancel cancel = new Cancel(getServerAddress(), Integer.valueOf(getServerPort()));
@@ -211,7 +226,7 @@ public class MainFrmPaged extends JFrame {
       cancel.setOperationNumber(jpCancel.getOperationNumber());
       cancel.setLoyaltySum(jpCancel.getLoyaltySum());
 
-        try {
+      try {
           jtaLog.append(apdkService.sendMessage(cancel));
         } catch (IOException e) {
             log.error(e.getMessage(), e);
@@ -220,6 +235,7 @@ public class MainFrmPaged extends JFrame {
     }
 
     private void init() {
+      jtaLog.append("...\r\n");
         jtaLog.append("Запрос: ИНИЦИАЛИЗАЦИЯ\r\n");
 
         Init init = new Init(getServerAddress(), Integer.valueOf(getServerPort()));
@@ -233,6 +249,7 @@ public class MainFrmPaged extends JFrame {
     }
 
     private void reconcilation() {
+      jtaLog.append("...\r\n");
         jtaLog.append("Запрос: СВЕРКА ИТОГОВ\r\n");
 
         Reconcilation reconcilation = new Reconcilation(getServerAddress(), Integer.valueOf(getServerPort()));
@@ -246,6 +263,7 @@ public class MainFrmPaged extends JFrame {
     }
 
     private void returnSale() {
+      jtaLog.append("...\r\n");
         jtaLog.append("Запрос: ВОЗВРАТ\r\n");
         ReturnSale returnSale = new ReturnSale(getServerAddress(), Integer.valueOf(getServerPort()));
         returnSale.setDate(jpReturn.getDate());
@@ -263,6 +281,7 @@ public class MainFrmPaged extends JFrame {
     }
 
     private void sale() {
+      jtaLog.append("...\r\n");
         jtaLog.append("Запрос: ПРОДАЖА\r\n");
 
         Sale sale = new Sale(getServerAddress(), Integer.valueOf(getServerPort()));
@@ -276,6 +295,21 @@ public class MainFrmPaged extends JFrame {
 
         try {
             jtaLog.append(apdkService.sendMessage(sale));
+        } catch (IOException e) {
+            log.error(e.getMessage(), e);
+            jtaLog.append(e.toString());
+        }
+    }
+
+    private void sendRawData() {
+      jtaLog.append("...\r\n");
+        jtaLog.append("Запрос: ДАННЫЕ\r\n");
+
+        RawData rawData = new RawData(getServerAddress(), Integer.valueOf(getServerPort()));
+        rawData.setData(jpRawData.getData());
+
+        try {
+            jtaLog.append(apdkService.sendMessage(rawData));
         } catch (IOException e) {
             log.error(e.getMessage(), e);
             jtaLog.append(e.toString());
