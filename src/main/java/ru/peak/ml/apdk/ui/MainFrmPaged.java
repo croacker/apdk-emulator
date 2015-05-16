@@ -207,6 +207,9 @@ public class MainFrmPaged extends JFrame {
         jtaLog.append("Запрос: ОТМЕНА\r\n");
 
         Cancel cancel = new Cancel(getServerAddress(), Integer.valueOf(getServerPort()));
+      cancel.setDate(jpCancel.getDate());
+      cancel.setOperationNumber(jpCancel.getOperationNumber());
+      cancel.setLoyaltySum(jpCancel.getLoyaltySum());
 
         try {
           jtaLog.append(apdkService.sendMessage(cancel));

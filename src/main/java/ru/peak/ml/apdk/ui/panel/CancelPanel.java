@@ -40,6 +40,14 @@ public class CancelPanel extends JPanel {
         return dateFormat.get().format(jtfDateCancel.getValue());
     }
 
+  public String getOperationNumber(){
+    return jtfOperationNumberCancel.getText();
+  }
+
+  public String getLoyaltySum(){
+    return jtfLoyaltySumCancel.getText();
+  }
+
     @SuppressWarnings("unchecked")
     @PostConstruct
     private void initComponents() {
@@ -66,11 +74,11 @@ public class CancelPanel extends JPanel {
                                                 .addGap(18, 18, 18)
                                                 .addComponent(jLabel2)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jtfLoyaltySumCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
+                                                .addComponent(jtfOperationNumberCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
                                         .addGroup(jpCancelLayout.createSequentialGroup()
                                                 .addComponent(jLabel3)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jtfOperationNumberCancel))
+                                                .addComponent(jtfLoyaltySumCancel))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpCancelLayout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
                                                 .addComponent(jbCancel)))
@@ -83,12 +91,12 @@ public class CancelPanel extends JPanel {
                                 .addGroup(jpCancelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel1)
                                         .addComponent(jtfDateCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jtfLoyaltySumCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jtfOperationNumberCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jLabel2))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jpCancelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel3)
-                                        .addComponent(jtfOperationNumberCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jtfLoyaltySumCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
                                 .addComponent(jbCancel)
                                 .addContainerGap())

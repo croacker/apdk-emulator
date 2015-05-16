@@ -4,7 +4,6 @@ import lombok.Getter;
 import lombok.Setter;
 import ru.peak.ml.apdk.service.formatter.CancelFormatter;
 import ru.peak.ml.apdk.service.formatter.MessageFormatter;
-import ru.peak.ml.loyalty.message.Message;
 import ru.peak.ml.loyalty.message.ResponseMessage;
 
 /**
@@ -17,6 +16,10 @@ public class Cancel extends CommonApdkMessage {
     @Getter
     @Setter
     private String date;
+
+  @Getter
+  @Setter
+  private String operationNumber;
 
     @Getter @Setter
     private String loyaltySum;
