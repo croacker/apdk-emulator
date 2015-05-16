@@ -6,7 +6,7 @@ import ru.peak.ml.loyalty.util.StringUtil;
 /**
  *
  */
-public class ReconcilationFormatter implements MessageFormatter{
+public class ReconciliationFormatter implements MessageFormatter{
     @Override
     public String toMessageString(Message message) {
         return StringUtil.EMPTY;

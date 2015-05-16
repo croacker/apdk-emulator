@@ -53,7 +53,7 @@ public class MainFrmPaged extends JFrame {
     @Autowired
     private InitPanel jpInit;
     @Autowired
-    private ReconcilationPanel jpReconcilation;
+    private ReconciliationPanel jpReconciliation;
   @Autowired
     private RawDataPanel jpRawData;
 
@@ -74,7 +74,7 @@ public class MainFrmPaged extends JFrame {
         jtpMain.addTab("Отмена", jpCancel);
         jtpMain.addTab("Состояние счета", jpAccount);
         jtpMain.addTab("Инициализация", jpInit);
-        jtpMain.addTab("Сверка итогов", jpReconcilation);
+        jtpMain.addTab("Сверка итогов", jpReconciliation);
         jtpMain.addTab("Данные", jpRawData);
 
         jtaLog.setColumns(20);
@@ -114,7 +114,7 @@ public class MainFrmPaged extends JFrame {
         jpAccount.addRunOperationClickListener(getAccountActionListener());
         jpCancel.addRunOperationClickListener(getCancelActionListener());
         jpInit.addRunOperationClickListener(getInitActionListener());
-        jpReconcilation.addRunOperationClickListener(getReconcilationActionListener());
+        jpReconciliation.addRunOperationClickListener(getReconciliationActionListener());
         jpReturn.addRunOperationClickListener(getReturnSaleActionListener());
         jpSale.addRunOperationClickListener(getSaleActionListener());
       jpRawData.addRunOperationClickListener(getRawDataListener());
@@ -157,11 +157,11 @@ public class MainFrmPaged extends JFrame {
         };
     }
 
-    private ActionListener getReconcilationActionListener() {
+    private ActionListener getReconciliationActionListener() {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                reconcilation();
+                reconciliation();
             }
         };
     }
@@ -248,14 +248,14 @@ public class MainFrmPaged extends JFrame {
         }
     }
 
-    private void reconcilation() {
+    private void reconciliation() {
       jtaLog.append("...\r\n");
         jtaLog.append("Запрос: СВЕРКА ИТОГОВ\r\n");
 
-        Reconcilation reconcilation = new Reconcilation(getServerAddress(), Integer.valueOf(getServerPort()));
+        Reconciliation reconciliation = new Reconciliation(getServerAddress(), Integer.valueOf(getServerPort()));
 
         try {
-            apdkService.sendMessage(reconcilation);
+            apdkService.sendMessage(reconciliation);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
           jtaLog.append(e.toString());

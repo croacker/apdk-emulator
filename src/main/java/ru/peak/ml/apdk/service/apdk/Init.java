@@ -2,7 +2,6 @@ package ru.peak.ml.apdk.service.apdk;
 
 import ru.peak.ml.apdk.service.formatter.InitFormatter;
 import ru.peak.ml.apdk.service.formatter.MessageFormatter;
-import ru.peak.ml.loyalty.message.Message;
 import ru.peak.ml.loyalty.message.ResponseMessage;
 
 /**
@@ -22,7 +21,7 @@ public class Init extends CommonApdkMessage {
 
     @Override
     public byte[] getData() {
-        return getNewApdkMessage().toArray();
+        return ORIGINAL_DATA;
     }
 
     @Override
