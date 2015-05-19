@@ -52,16 +52,6 @@
             <version>3.2.1</version>
         </dependency>
         <dependency>
-            <groupId>c3p0</groupId>
-            <artifactId>c3p0</artifactId>
-            <version>0.9.1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>18.0</version>
-        </dependency>
-        <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
             <version>2.2</version>
@@ -132,7 +122,7 @@
                     <configurationDirectory>resources</configurationDirectory>
                     <copyConfigurationDirectory>true</copyConfigurationDirectory>
                     <platforms>
-                        <platform>unix</platform>
+                        <!--<platform>unix</platform>-->
                         <platform>windows</platform>
                     </platforms>
                 </configuration>
