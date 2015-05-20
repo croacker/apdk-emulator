@@ -11,6 +11,8 @@ import ru.peak.ml.loyalty.message.ResponseMessage;
  */
 public class Cancel extends CommonApdkMessage {
 
+  public static byte[] ORIGINAL_DATA = {2, 81, 0, 0, 1, 0, 7, 1, 8, 0, 49, 48, 48, 48, 48, 48, 49, 56, 2, 4, 0, 49, 50, 51, 52, 5, 14, 0, 50, 48, 49, 53, 48, 53, 50, 48, 49, 52, 48, 56, 48, 51, 6, 8, 0, 51, 48, 49, 48, 49, 48, 49, 48, 17, 6, 0, 49, 49, 54, 48, 48, 49, 18, 3, 0, 50, 48, 81, 19, 3, 0, 0, 0, 38, 25, 1, 0, 52, 100, 3, 0, 48, 48, 48, 38, -80};
+
     public static final String OPERATION_TYPE = new String(new byte[]{52});
 
     @Getter

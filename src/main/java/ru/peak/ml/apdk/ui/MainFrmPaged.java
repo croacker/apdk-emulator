@@ -213,6 +213,8 @@ public class MainFrmPaged extends JFrame {
         jtaLog.append("Запрос: ЗАПРОС БАЛАНСА\r\n");
 
         Account account = new Account(getServerAddress(), Integer.valueOf(getServerPort()));
+      account.setShopNumber(getShopNumber());
+      account.setTerminalId(getTerminalId());
         account.setCardHash(jpAccount.getCardHash());
 
         try {
@@ -228,6 +230,8 @@ public class MainFrmPaged extends JFrame {
         jtaLog.append("Запрос: ОТМЕНА\r\n");
 
         Cancel cancel = new Cancel(getServerAddress(), Integer.valueOf(getServerPort()));
+      cancel.setShopNumber(getShopNumber());
+      cancel.setTerminalId(getTerminalId());
       cancel.setDate(jpCancel.getDate());
       cancel.setOperationNumber(jpCancel.getOperationNumber());
       cancel.setLoyaltySum(jpCancel.getLoyaltySum());
@@ -245,7 +249,8 @@ public class MainFrmPaged extends JFrame {
         jtaLog.append("Запрос: ИНИЦИАЛИЗАЦИЯ\r\n");
 
         Init init = new Init(getServerAddress(), Integer.valueOf(getServerPort()));
-
+      init.setShopNumber(getShopNumber());
+      init.setTerminalId(getTerminalId());
         try {
           jtaLog.append(apdkService.sendMessage(init));
         } catch (IOException e) {
@@ -259,7 +264,8 @@ public class MainFrmPaged extends JFrame {
         jtaLog.append("Запрос: СВЕРКА ИТОГОВ\r\n");
 
         Reconciliation reconciliation = new Reconciliation(getServerAddress(), Integer.valueOf(getServerPort()));
-
+      reconciliation.setShopNumber(getShopNumber());
+      reconciliation.setTerminalId(getTerminalId());
         try {
             apdkService.sendMessage(reconciliation);
         } catch (IOException e) {
@@ -272,6 +278,8 @@ public class MainFrmPaged extends JFrame {
       jtaLog.append("...\r\n");
         jtaLog.append("Запрос: ВОЗВРАТ\r\n");
         ReturnSale returnSale = new ReturnSale(getServerAddress(), Integer.valueOf(getServerPort()));
+      returnSale.setShopNumber(getShopNumber());
+      returnSale.setTerminalId(getTerminalId());
         returnSale.setDate(jpReturn.getDate());
         returnSale.setPaymentMethod(jpReturn.getPaymentMethod());
         returnSale.setReferenceNumber(jpReturn.getReferenceNumber());
@@ -291,6 +299,8 @@ public class MainFrmPaged extends JFrame {
         jtaLog.append("Запрос: ПРОДАЖА\r\n");
 
         Sale sale = new Sale(getServerAddress(), Integer.valueOf(getServerPort()));
+      sale.setShopNumber(getShopNumber());
+      sale.setTerminalId(getTerminalId());
         sale.setCardHash(jpSale.getCardHash());
         sale.setDate(jpSale.getDate());
         sale.setPaymentMethod(jpSale.getPaymentMethod());

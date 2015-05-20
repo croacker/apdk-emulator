@@ -73,6 +73,8 @@ public class SettingsDialog extends WebDialog{
 
         wtfServerAddress = new WebTextField( 15 );
         wtfServerPort = new WebTextField( 15 );
+      wtfShopNumber = new WebTextField( 15 );
+      wtfTerminalId = new WebTextField( 15 );
 
         setIconImages(WebLookAndFeel.getImages());
       setDefaultCloseOperation(WebDialog.DISPOSE_ON_CLOSE);
@@ -80,7 +82,8 @@ public class SettingsDialog extends WebDialog{
         setModal(true);
 
         TableLayout layout = new TableLayout ( new double[][]{ { TableLayout.PREFERRED, TableLayout.FILL },
-                { TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED } } );
+                { TableLayout.PREFERRED, TableLayout.PREFERRED,
+                    TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED } } );
         layout.setHGap(5);
         layout.setVGap(5);
       WebPanel content = new WebPanel ( layout );
@@ -93,13 +96,19 @@ public class SettingsDialog extends WebDialog{
         content.add ( new WebLabel ( "Порт сервера:", WebLabel.TRAILING ), "0,1" );
         content.add (wtfServerPort, "1,1" );
 
+        content.add ( new WebLabel ( "Номер магазина:", WebLabel.TRAILING ), "0,2" );
+        content.add (wtfShopNumber, "1,2" );
+
+        content.add ( new WebLabel ( "Номер терминала:", WebLabel.TRAILING ), "0,3" );
+        content.add (wtfTerminalId, "1,3" );
+
         wbOk = new WebButton( "ОК" );
         wbOk.addActionListener(getCloseActionListener());
 
         wbCancel = new WebButton ( "Отмена" );
         wbCancel.addActionListener(getCloseActionListener());
 
-        content.add(new CenterPanel(new GroupPanel(5, wbOk, wbCancel)), "0,2,1,2");
+        content.add(new CenterPanel(new GroupPanel(5, wbOk, wbCancel)), "0,4,1,4");
         SwingUtils.equalizeComponentsWidths(wbOk, wbCancel);
 
         add(content);

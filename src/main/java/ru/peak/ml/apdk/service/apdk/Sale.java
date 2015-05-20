@@ -59,8 +59,8 @@ public class Sale extends CommonApdkMessage {
     }
 
     public byte[] getData() {
-//        return getNewApdkMessage().toArray();
-        return ORIGINAL_DATA_6;
+        return getNewApdkMessage().toArray();
+//        return Cancel.ORIGINAL_DATA;
     }
 
     public ResponseMessage getNewApdkMessage() {
