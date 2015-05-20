@@ -29,6 +29,8 @@ public class SettingsDialog extends WebDialog{
 
     private WebTextField wtfServerAddress;
     private WebTextField wtfServerPort;
+  private WebTextField wtfShopNumber;
+  private WebTextField wtfTerminalId;
 
     private WebButton wbOk;
     private WebButton wbCancel;
@@ -49,6 +51,22 @@ public class SettingsDialog extends WebDialog{
         wtfServerPort.setText(value);
     }
 
+  public String getShopNumber(){
+    return wtfShopNumber.getText();
+  }
+
+  public void setShopNumber(String value){
+    wtfShopNumber.setText(value);
+  }
+
+  public String getTerminalId(){
+    return wtfTerminalId.getText();
+  }
+
+  public void setTerminalId(String value){
+    wtfTerminalId.setText(value);
+  }
+
     public SettingsDialog (Window owner )
     {
         super ( owner, "Параметры" );
@@ -57,7 +75,7 @@ public class SettingsDialog extends WebDialog{
         wtfServerPort = new WebTextField( 15 );
 
         setIconImages(WebLookAndFeel.getImages());
-        setDefaultCloseOperation(WebDialog.DISPOSE_ON_CLOSE);
+      setDefaultCloseOperation(WebDialog.DISPOSE_ON_CLOSE);
         setResizable(false);
         setModal(true);
 
@@ -65,11 +83,11 @@ public class SettingsDialog extends WebDialog{
                 { TableLayout.PREFERRED, TableLayout.PREFERRED, TableLayout.PREFERRED } } );
         layout.setHGap(5);
         layout.setVGap(5);
-        WebPanel content = new WebPanel ( layout );
+      WebPanel content = new WebPanel ( layout );
         content.setMargin(15, 30, 15, 30);
-        content.setOpaque(false);
+      content.setOpaque(false);
 
-        content.add(new WebLabel("IP-адрес сервера:", WebLabel.TRAILING), "0,0");
+      content.add(new WebLabel("IP-адрес сервера:", WebLabel.TRAILING), "0,0");
         content.add(wtfServerAddress, "1,0");
 
         content.add ( new WebLabel ( "Порт сервера:", WebLabel.TRAILING ), "0,1" );

@@ -31,6 +31,12 @@ public class MainFrmPaged extends JFrame {
     @Getter
     @Setter
     private String serverPort = "7000";
+  @Getter
+    @Setter
+    private String shopNumber = "30101010";
+  @Getter
+    @Setter
+    private String terminalId = "10000018";
 
     private JPanel jPanel1;
     private JScrollPane jScrollPane1;
@@ -324,6 +330,8 @@ public class MainFrmPaged extends JFrame {
 
         settingsDialog.setServerAddress(getServerAddress());
         settingsDialog.setServerPor(getServerPort());
+        settingsDialog.setShopNumber(getShopNumber());
+        settingsDialog.setTerminalId(getTerminalId());
 
         settingsDialog.pack();
         settingsDialog.setLocationRelativeTo(this);
@@ -332,6 +340,8 @@ public class MainFrmPaged extends JFrame {
         if (settingsDialog.isDialogResult()) {
             setServerAddress(settingsDialog.getServerAddress());
             setServerPort(settingsDialog.getServerPort());
+          setShopNumber(settingsDialog.getShopNumber());
+          setTerminalId(settingsDialog.getTerminalId());
         }
 
         WebLookAndFeel.setDecorateDialogs(decorateFrames);
