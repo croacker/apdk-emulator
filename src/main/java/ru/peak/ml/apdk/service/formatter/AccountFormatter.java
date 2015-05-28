@@ -9,12 +9,12 @@ public class AccountFormatter implements MessageFormatter{
     @Override
     public String toMessageString(Message message) {
         StringBuffer stringBuffer = new StringBuffer();
-        stringBuffer.append("Номер ссылки:[");
-        stringBuffer.append(message.getReferenceNumber());
-        stringBuffer.append("]");
-        stringBuffer.append("\r\n");
         stringBuffer.append("Статус транзакции:[");
         stringBuffer.append(message.getTransactionStatus());
+        stringBuffer.append("]");
+        stringBuffer.append("\r\n");
+        stringBuffer.append("Номер ссылки:[");
+        stringBuffer.append(message.getReferenceNumber());
         stringBuffer.append("]");
         stringBuffer.append("\r\n");
         stringBuffer.append("Баланс счета:[");
