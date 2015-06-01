@@ -31,10 +31,10 @@ public class MainFrmPaged extends JFrame {
     @Getter
     @Setter
     private String serverPort = "7000";
-  @Getter
+    @Getter
     @Setter
     private String shopNumber = "30101010";
-  @Getter
+    @Getter
     @Setter
     private String terminalId = "10000018";
 
@@ -60,7 +60,7 @@ public class MainFrmPaged extends JFrame {
     private InitPanel jpInit;
     @Autowired
     private ReconciliationPanel jpReconciliation;
-  @Autowired
+    @Autowired
     private RawDataPanel jpRawData;
 
     private JTextArea jtaLog;
@@ -123,7 +123,7 @@ public class MainFrmPaged extends JFrame {
         jpReconciliation.addRunOperationClickListener(getReconciliationActionListener());
         jpReturn.addRunOperationClickListener(getReturnSaleActionListener());
         jpSale.addRunOperationClickListener(getSaleActionListener());
-      jpRawData.addRunOperationClickListener(getRawDataListener());
+        jpRawData.addRunOperationClickListener(getRawDataListener());
 
         jmbMain.addSettingsActionListener(getShowSettingsActionListener());
     }
@@ -209,77 +209,77 @@ public class MainFrmPaged extends JFrame {
     }
 
     private void account() {
-      jtaLog.append("...\r\n");
+        jtaLog.append("...\r\n");
         jtaLog.append("Запрос: ЗАПРОС БАЛАНСА\r\n");
 
         Account account = new Account(getServerAddress(), Integer.valueOf(getServerPort()));
-      account.setShopNumber(getShopNumber());
-      account.setTerminalId(getTerminalId());
+        account.setShopNumber(getShopNumber());
+        account.setTerminalId(getTerminalId());
         account.setCardHash(jpAccount.getCardHash());
 
         try {
-          jtaLog.append(apdkService.sendMessage(account));
+            jtaLog.append(apdkService.sendMessage(account));
         } catch (IOException e) {
             log.error(e.getMessage(), e);
-          jtaLog.append(e.toString());
+            jtaLog.append(e.toString());
         }
     }
 
     private void cancel() {
-      jtaLog.append("...\r\n");
+        jtaLog.append("...\r\n");
         jtaLog.append("Запрос: ОТМЕНА\r\n");
 
         Cancel cancel = new Cancel(getServerAddress(), Integer.valueOf(getServerPort()));
-      cancel.setShopNumber(getShopNumber());
-      cancel.setTerminalId(getTerminalId());
-      cancel.setDate(jpCancel.getDate());
-      cancel.setOperationNumber(jpCancel.getOperationNumber());
-      cancel.setLoyaltySum(jpCancel.getLoyaltySum());
+        cancel.setShopNumber(getShopNumber());
+        cancel.setTerminalId(getTerminalId());
+        cancel.setDate(jpCancel.getDate());
+        cancel.setOperationNumber(jpCancel.getOperationNumber());
+        cancel.setLoyaltySum(jpCancel.getLoyaltySum());
 
-      try {
-          jtaLog.append(apdkService.sendMessage(cancel));
+        try {
+            jtaLog.append(apdkService.sendMessage(cancel));
         } catch (IOException e) {
             log.error(e.getMessage(), e);
-          jtaLog.append(e.toString());
+            jtaLog.append(e.toString());
         }
     }
 
     private void init() {
-      jtaLog.append("...\r\n");
+        jtaLog.append("...\r\n");
         jtaLog.append("Запрос: ИНИЦИАЛИЗАЦИЯ\r\n");
 
         Init init = new Init(getServerAddress(), Integer.valueOf(getServerPort()));
-      init.setShopNumber(getShopNumber());
-      init.setTerminalId(getTerminalId());
+        init.setShopNumber(getShopNumber());
+        init.setTerminalId(getTerminalId());
         try {
-          jtaLog.append(apdkService.sendMessage(init));
+            jtaLog.append(apdkService.sendMessage(init));
         } catch (IOException e) {
             log.error(e.getMessage(), e);
-          jtaLog.append(e.toString());
+            jtaLog.append(e.toString());
         }
     }
 
     private void reconciliation() {
-      jtaLog.append("...\r\n");
+        jtaLog.append("...\r\n");
         jtaLog.append("Запрос: СВЕРКА ИТОГОВ\r\n");
 
         Reconciliation reconciliation = new Reconciliation(getServerAddress(), Integer.valueOf(getServerPort()));
-      reconciliation.setShopNumber(getShopNumber());
-      reconciliation.setTerminalId(getTerminalId());
+        reconciliation.setShopNumber(getShopNumber());
+        reconciliation.setTerminalId(getTerminalId());
         try {
-            apdkService.sendMessage(reconciliation);
+            jtaLog.append(apdkService.sendMessage(reconciliation));
         } catch (IOException e) {
             log.error(e.getMessage(), e);
-          jtaLog.append(e.toString());
+            jtaLog.append(e.toString());
         }
     }
 
     private void returnSale() {
-      jtaLog.append("...\r\n");
+        jtaLog.append("...\r\n");
         jtaLog.append("Запрос: ВОЗВРАТ\r\n");
         ReturnSale returnSale = new ReturnSale(getServerAddress(), Integer.valueOf(getServerPort()));
-      returnSale.setShopNumber(getShopNumber());
-      returnSale.setTerminalId(getTerminalId());
+        returnSale.setShopNumber(getShopNumber());
+        returnSale.setTerminalId(getTerminalId());
         returnSale.setDate(jpReturn.getDate());
         returnSale.setPaymentMethod(jpReturn.getPaymentMethod());
         returnSale.setReferenceNumber(jpReturn.getReferenceNumber());
@@ -295,12 +295,12 @@ public class MainFrmPaged extends JFrame {
     }
 
     private void sale() {
-      jtaLog.append("...\r\n");
+        jtaLog.append("...\r\n");
         jtaLog.append("Запрос: ПРОДАЖА\r\n");
 
         Sale sale = new Sale(getServerAddress(), Integer.valueOf(getServerPort()));
-      sale.setShopNumber(getShopNumber());
-      sale.setTerminalId(getTerminalId());
+        sale.setShopNumber(getShopNumber());
+        sale.setTerminalId(getTerminalId());
         sale.setCardHash(jpSale.getCardHash());
         sale.setDate(jpSale.getDate());
         sale.setPaymentMethod(jpSale.getPaymentMethod());
@@ -318,7 +318,7 @@ public class MainFrmPaged extends JFrame {
     }
 
     private void sendRawData() {
-      jtaLog.append("...\r\n");
+        jtaLog.append("...\r\n");
         jtaLog.append("Запрос: ДАННЫЕ\r\n");
 
         RawData rawData = new RawData(getServerAddress(), Integer.valueOf(getServerPort()));
@@ -350,8 +350,8 @@ public class MainFrmPaged extends JFrame {
         if (settingsDialog.isDialogResult()) {
             setServerAddress(settingsDialog.getServerAddress());
             setServerPort(settingsDialog.getServerPort());
-          setShopNumber(settingsDialog.getShopNumber());
-          setTerminalId(settingsDialog.getTerminalId());
+            setShopNumber(settingsDialog.getShopNumber());
+            setTerminalId(settingsDialog.getTerminalId());
         }
 
         WebLookAndFeel.setDecorateDialogs(decorateFrames);
