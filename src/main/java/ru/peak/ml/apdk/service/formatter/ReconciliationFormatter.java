@@ -26,16 +26,12 @@ public class ReconciliationFormatter implements MessageFormatter{
         stringBuffer.append(message.getSumLoyaltyWriteOff());
         stringBuffer.append("]");
         stringBuffer.append("\r\n");
-        stringBuffer.append("Возвраты количество:[");
+        stringBuffer.append("Возврат и Отмена количество:[");
         stringBuffer.append(message.getCountReturnOperations());
         stringBuffer.append("]");
         stringBuffer.append("\r\n");
-        stringBuffer.append("Возвраты сумма списанных бонусов:[");
+        stringBuffer.append("Возврат и Отмена сумма списанных бонусов:[");
         stringBuffer.append(message.getWriteOffReturnOperations());
-        stringBuffer.append("]");
-        stringBuffer.append("\r\n");
-        stringBuffer.append("Возвраты сумма начисленных бонусов:[");
-        stringBuffer.append(message.getAccuralReturnOperations());
         stringBuffer.append("]");
         stringBuffer.append("\r\n");
         return stringBuffer.toString();

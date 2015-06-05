@@ -19,7 +19,7 @@ import java.net.Socket;
 public class ApdkService {
 
     public String sendMessage(ApdkMessage apdkMessage) throws IOException {
-        String result = "";
+        String result;
         try {
             Socket socket = getSocket(apdkMessage);
 
