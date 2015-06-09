@@ -5,14 +5,14 @@ import ru.peak.ml.loyalty.message.Message;
 /**
  *
  */
-public class ReconciliationFormatter implements MessageFormatter{
+public class ReconciliationFormatter implements MessageFormatter {
     @Override
     public String toMessageString(Message message) {
         StringBuffer stringBuffer = new StringBuffer();
-      stringBuffer.append("Статус транзакции:[");
-      stringBuffer.append(message.getTransactionStatus());
-      stringBuffer.append("]");
-      stringBuffer.append("\r\n");
+        stringBuffer.append("Статус транзакции:[");
+        stringBuffer.append(message.getTransactionStatus());
+        stringBuffer.append("]");
+        stringBuffer.append("\r\n");
         stringBuffer.append("Начисления количество:[");
         stringBuffer.append(message.getOperationsCount());
         stringBuffer.append("]");
