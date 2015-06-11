@@ -37,6 +37,9 @@ public class MainFrmPaged extends JFrame {
     @Getter
     @Setter
     private String terminalId = "10000018";
+    @Getter
+    @Setter
+    private String batchNumber = "100001";
 
     private JPanel jPanel1;
     private JScrollPane jScrollPane1;
@@ -215,6 +218,7 @@ public class MainFrmPaged extends JFrame {
         Account account = new Account(getServerAddress(), Integer.valueOf(getServerPort()));
         account.setShopNumber(getShopNumber());
         account.setTerminalId(getTerminalId());
+        account.setBatchNumber(getBatchNumber());
         account.setCardHash(jpAccount.getCardHash());
 
         try {
@@ -232,6 +236,7 @@ public class MainFrmPaged extends JFrame {
         Cancel cancel = new Cancel(getServerAddress(), Integer.valueOf(getServerPort()));
         cancel.setShopNumber(getShopNumber());
         cancel.setTerminalId(getTerminalId());
+        cancel.setBatchNumber(getBatchNumber());
         cancel.setDate(jpCancel.getDate());
         cancel.setOperationNumber(jpCancel.getOperationNumber());
         cancel.setLoyaltySum(jpCancel.getLoyaltySum());
@@ -251,6 +256,7 @@ public class MainFrmPaged extends JFrame {
         Init init = new Init(getServerAddress(), Integer.valueOf(getServerPort()));
         init.setShopNumber(getShopNumber());
         init.setTerminalId(getTerminalId());
+        init.setBatchNumber(getBatchNumber());
         try {
             jtaLog.append(apdkService.sendMessage(init));
         } catch (IOException e) {
@@ -266,6 +272,7 @@ public class MainFrmPaged extends JFrame {
         Reconciliation reconciliation = new Reconciliation(getServerAddress(), Integer.valueOf(getServerPort()));
         reconciliation.setShopNumber(getShopNumber());
         reconciliation.setTerminalId(getTerminalId());
+        reconciliation.setBatchNumber(getBatchNumber());
         try {
             jtaLog.append(apdkService.sendMessage(reconciliation));
         } catch (IOException e) {
@@ -280,6 +287,7 @@ public class MainFrmPaged extends JFrame {
         ReturnSale returnSale = new ReturnSale(getServerAddress(), Integer.valueOf(getServerPort()));
         returnSale.setShopNumber(getShopNumber());
         returnSale.setTerminalId(getTerminalId());
+        returnSale.setBatchNumber(getBatchNumber());
         returnSale.setDate(jpReturn.getDate());
         returnSale.setPaymentMethod(jpReturn.getPaymentMethod());
         returnSale.setReferenceNumber(jpReturn.getReferenceNumber());
@@ -301,6 +309,7 @@ public class MainFrmPaged extends JFrame {
         Sale sale = new Sale(getServerAddress(), Integer.valueOf(getServerPort()));
         sale.setShopNumber(getShopNumber());
         sale.setTerminalId(getTerminalId());
+        sale.setBatchNumber(getBatchNumber());
         sale.setCardHash(jpSale.getCardHash());
         sale.setDate(jpSale.getDate());
         sale.setPaymentMethod(jpSale.getPaymentMethod());
@@ -342,6 +351,7 @@ public class MainFrmPaged extends JFrame {
         settingsDialog.setServerPor(getServerPort());
         settingsDialog.setShopNumber(getShopNumber());
         settingsDialog.setTerminalId(getTerminalId());
+        settingsDialog.setBatchNumber(getBatchNumber());
 
         settingsDialog.pack();
         settingsDialog.setLocationRelativeTo(this);
@@ -352,6 +362,7 @@ public class MainFrmPaged extends JFrame {
             setServerPort(settingsDialog.getServerPort());
             setShopNumber(settingsDialog.getShopNumber());
             setTerminalId(settingsDialog.getTerminalId());
+            setBatchNumber(settingsDialog.getBatchNumber());
         }
 
         WebLookAndFeel.setDecorateDialogs(decorateFrames);
