@@ -33,8 +33,12 @@ public class ReconciliationFormatter implements MessageFormatter {
         stringBuffer.append(message.getCountReturnOperations());
         stringBuffer.append("]");
         stringBuffer.append("\r\n");
-        stringBuffer.append("Возврат и Отмена сумма списанных бонусов:[");
+        stringBuffer.append("Сумма списанных бонусов по операциям Возврат:[");
         stringBuffer.append(message.getWriteOffReturnOperations());
+        stringBuffer.append("]");
+        stringBuffer.append("\r\n");
+        stringBuffer.append("Сумма начисленных бонусов по операциям Возврат:[");
+        stringBuffer.append(message.getAccuralReturnOperations());
         stringBuffer.append("]");
         stringBuffer.append("\r\n");
         return stringBuffer.toString();

@@ -1,8 +1,10 @@
 package ru.peak.ml.apdk.ui.dialog;
 
 import com.alee.extended.layout.TableLayout;
+import com.alee.extended.layout.VerticalFlowLayout;
 import com.alee.extended.panel.CenterPanel;
 import com.alee.extended.panel.GroupPanel;
+import com.alee.extended.window.WebPopOver;
 import com.alee.laf.WebLookAndFeel;
 import com.alee.laf.button.WebButton;
 import com.alee.laf.label.WebLabel;
@@ -15,6 +17,7 @@ import com.alee.utils.SwingUtils;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -135,13 +138,25 @@ public class SettingsDialog extends WebDialog {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setDialogResult(e.getSource() == wbOk);
-                close();
+                if(checkBatchNumber()) {
+                    setDialogResult(e.getSource() == wbOk);
+                    close();
+                }else {
+                    showError("Номер батча должен содержать четное количество символов!!!");
+                }
             }
         };
     }
 
+    private void showError(String message) {
+        JOptionPane.showMessageDialog(this, message, "Ошибка", JOptionPane.ERROR_MESSAGE);
+    }
+
     public void close() {
         setVisible(false);
+    }
+
+    private boolean checkBatchNumber(){
+        return getBatchNumber().trim().length() % 2 == 0;
     }
 }
