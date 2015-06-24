@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import ru.peak.ml.apdk.ui.list.payment.PaymentMethodModel;
-import ru.peak.ml.loyalty.core.data.mlenum.PaymentMethod;
+import ru.peak.ml.loyalty.core.data.mlenum.CardOperationPaymentMethod;
 
 import javax.annotation.PostConstruct;
 import javax.swing.*;
@@ -15,7 +15,7 @@ import javax.swing.*;
 @Component
 @Slf4j
 @Scope("prototype")
-public class PaymentMethodCombobox extends JComboBox<PaymentMethod> {
+public class PaymentMethodCombobox extends JComboBox<CardOperationPaymentMethod> {
 
 
   @SuppressWarnings("unchecked")

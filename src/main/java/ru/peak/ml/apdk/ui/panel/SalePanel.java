@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.peak.ml.apdk.ui.edit.DateWebSpinner;
 import ru.peak.ml.apdk.ui.list.PaymentMethodCombobox;
-import ru.peak.ml.loyalty.core.data.mlenum.PaymentMethod;
+import ru.peak.ml.loyalty.core.data.mlenum.CardOperationPaymentMethod;
 import ru.peak.ml.loyalty.core.service.CardService;
 import ru.peak.ml.loyalty.util.StringUtil;
 
@@ -101,7 +101,7 @@ public class SalePanel extends JPanel {
     }
 
     public String getPaymentMethod(){
-        return ((PaymentMethod)jcbPaymentMethodSale.getSelectedItem()).getIdCode();
+        return ((CardOperationPaymentMethod)jcbPaymentMethodSale.getSelectedItem()).getIdCode();
     }
 
     @SuppressWarnings("unchecked")

@@ -1,25 +1,25 @@
 package ru.peak.ml.apdk.ui.list.payment;
 
-import ru.peak.ml.loyalty.core.data.mlenum.PaymentMethod;
+import ru.peak.ml.loyalty.core.data.mlenum.CardOperationPaymentMethod;
 
 import javax.swing.*;
 
 /**
  *
  */
-public class PaymentMethodModel extends DefaultComboBoxModel<PaymentMethod> {
+public class PaymentMethodModel extends DefaultComboBoxModel<CardOperationPaymentMethod> {
 
-    private PaymentMethod[] paymentMethods = PaymentMethod.values();
+    private CardOperationPaymentMethod[] paymentMethods = CardOperationPaymentMethod.values();
 
-    private PaymentMethod selectedItem;
+    private CardOperationPaymentMethod selectedItem;
 
     @Override
     public void setSelectedItem(Object anItem) {
-        selectedItem = (PaymentMethod) anItem;
+        selectedItem = (CardOperationPaymentMethod) anItem;
     }
 
     @Override
-    public PaymentMethod getSelectedItem() {
+    public CardOperationPaymentMethod getSelectedItem() {
         return selectedItem;
     }
 
@@ -29,7 +29,7 @@ public class PaymentMethodModel extends DefaultComboBoxModel<PaymentMethod> {
     }
 
     @Override
-    public PaymentMethod getElementAt(int index) {
+    public CardOperationPaymentMethod getElementAt(int index) {
         return paymentMethods[index];
     }
 
