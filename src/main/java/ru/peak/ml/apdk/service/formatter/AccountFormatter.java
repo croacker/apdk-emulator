@@ -13,10 +13,6 @@ public class AccountFormatter implements MessageFormatter{
         stringBuffer.append(message.getTransactionStatus());
         stringBuffer.append("]");
         stringBuffer.append("\r\n");
-        stringBuffer.append("Номер ссылки:[");
-        stringBuffer.append(message.getReferenceNumber());
-        stringBuffer.append("]");
-        stringBuffer.append("\r\n");
         stringBuffer.append("Баланс счета:[");
         stringBuffer.append(message.getBalanceOfBonusAccount());
         stringBuffer.append("]");
