@@ -2,7 +2,7 @@ package ru.peak.ml.apdk.service;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.stereotype.Service;
 import ru.peak.ml.apdk.service.apdk.ApdkMessage;
 import ru.peak.ml.loyalty.message.RequestMessage;

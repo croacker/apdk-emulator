@@ -13,13 +13,14 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.compiler.version>1.7</java.compiler.version>
         <springframework.version>4.1.1.RELEASE</springframework.version>
+        <commons.lang.version>3.4</commons.lang.version>
     </properties>
 
     <dependencies>
         <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang.version}</version>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -112,6 +113,7 @@
                     </execution>
                 </executions>
                 <configuration>
+                    <repositoryLayout>flat</repositoryLayout>
                     <programs>
                         <program>
                             <mainClass>ru.peak.ml.apdk.ApdkEmulatorApp</mainClass>

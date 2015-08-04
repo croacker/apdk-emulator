@@ -1,7 +1,7 @@
 package ru.peak.ml.apdk.ui.panel;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
