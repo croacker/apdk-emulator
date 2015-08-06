@@ -21,8 +21,9 @@ public class DateWebSpinner extends WebSpinner {
     @PostConstruct
     private void initComponents(){
         SpinnerDateModel model = new SpinnerDateModel ();
-        model.setCalendarField(Calendar.YEAR);
-        setModel ( model );
+        model.setCalendarField(Calendar.MINUTE);
+        setModel(model);
+        setEditor(new JSpinner.DateEditor(this, "dd/MM/yyyy HH:mm:ss"));
     }
 
 }
