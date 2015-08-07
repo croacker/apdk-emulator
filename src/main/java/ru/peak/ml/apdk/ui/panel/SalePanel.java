@@ -27,11 +27,7 @@ import java.util.Date;
 @Slf4j
 public class SalePanel extends JPanel {
 
-    protected static ThreadLocal<DateFormat> dateFormat = new ThreadLocal<DateFormat>() {
-        protected DateFormat initialValue() {
-            return new SimpleDateFormat("yyyyMMddHHmmFF");
-        }
-    };
+    protected static DateFormat dateFormat =  new SimpleDateFormat("yyyyMMddHHmmss");
 
     private static ThreadLocal<DateFormat> expireDateInputFormat = new ThreadLocal<DateFormat>() {
         protected DateFormat initialValue() {
@@ -81,7 +77,7 @@ public class SalePanel extends JPanel {
     }
 
     public String getDate(){
-        return dateFormat.get().format(jtfDateSale.getValue());
+        return dateFormat.format(jtfDateSale.getValue());
     }
 
     public String getReferenceNumber(){
